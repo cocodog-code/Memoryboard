@@ -1,2 +1,10 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<div class="center top-page" id="top-image">
+  <h1>Share your memories on Memoryboard</h1>
+  <%= link_to "Login", "#", class: "btn btn-lg btn-primary mg-right-5" %>
+  <%= link_to "Sign up", "#", class: "btn btn-lg btn-primary" %>
+  <p>or</p>
+  <%= link_to '#', class: "btn btn-lg btn-primary facebook" do %>
+    <i class="fab fa-facebook"></i>
+    Login with Facebook
+  <% end %>
+</div>
