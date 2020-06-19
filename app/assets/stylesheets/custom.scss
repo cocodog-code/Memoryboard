@@ -181,6 +181,14 @@ aside {
   margin-top: 15px;
 }
 
+.delete_account {
+  text-align: right;
+  margin-top: 20px;
+  a {
+    color: red;
+  }
+}
+
 /* forms */
 
 input, textarea, select, .uneditable-input {
@@ -216,6 +224,10 @@ input {
     margin-left: 20px;
     font-weight: normal;
   }
+}
+
+#user_gender {
+
 }
 
 #session_remember_me {
