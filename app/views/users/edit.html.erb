@@ -16,13 +16,13 @@
       <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.label :website %>
-      <%= f.email_field :website, class: 'form-control' %>
+      <%= f.text_field :website, class: 'form-control' %>
       
       <%= f.label :introduction %>
       <%= f.text_area :introduction, class: 'form-control' %>
       
       <%= f.label :phone_number %>
-      <%= f.email_field :phone_number, class: 'form-control' %>
+      <%= f.telephone_field :phone_number, class: 'form-control' %>
       
       <%= f.label :gender %>
       <%= f.select :gender, [ ['Male', 1], ['Female', 2], ['Other', 3] ], { include_blank: true }, class: 'form-control' %>
