@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_logged_in, only: [:edit, :update, :index]
+  before_action :require_logged_in, only: [:edit, :update, :index, :destroy]
   before_action :correct_user, only: [:edit, :update]
   
   def index
@@ -36,6 +36,28 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'edit'
+    end
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    #プロフィール画面から自身のアカウントを削除する場合
+    if request.referrer == edit_user_url
+      if current_user?(@user)
+        @user.destroy
+        flash[:success] = "Account deleted"
+        redirect_to root_url
+      else
+        redirect_to root_url
+      end
+    #adminユーザーが他のユーザーのアカウントを削除する場合
+    elsif
+      request.referrer == users_url
+      @user.destroy
+      flash[:success] = "User deleted"
+      redirect_to users_url
+    else
+      redirect_to root_url
     end
   end
   

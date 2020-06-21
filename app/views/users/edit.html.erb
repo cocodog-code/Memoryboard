@@ -36,7 +36,8 @@
       <a href="https://gravatar.com/emails" target="_blank" rel="noopener">Change icon</a><br>
       <%= link_to "Change password", edit_password_edit_path %>
       <div class="delete_account">
-        <a href="#">Delete account</a>
+        <%= link_to "Delete account", @user, method: :delete,
+                                  data: { confirm: "You sure?"} %>
       </div>
     </div>
   </div>
