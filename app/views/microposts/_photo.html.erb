@@ -1,0 +1,12 @@
+<li id="micropost-<%= micropost.id %>">
+  <span class="content box-border">
+    <%= image_tag(micropost.square_image, :width =>'100%',:height =>'100%') if micropost.image.attached? %>
+  </span>
+  <span class="timestamps">
+   Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+   <% if current_user?(micropost.user) %>
+       <%= link_to "Delete", micropost, method: :delete,
+                             data: { confirm: "You sure" } %>
+   <% end %>
+  </span>
+</li>

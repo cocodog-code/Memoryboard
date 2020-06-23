@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(model: @user, url: password_edit_path, local: true) do |f| %>
-      <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages', object: f.object %>
       
       <%= f.label :current_password %>
       <%= f.password_field :current_password, class: 'form-control' %>
