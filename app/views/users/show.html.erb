@@ -5,7 +5,6 @@
         <h1>
           <%= gravatar_for @user %>
           <%= @user.user_name %>
-          
         </h1>
       </section>
       <section class="stats">
@@ -13,8 +12,9 @@
       </section>
       <%= render 'follow_form' if logged_in? %>
     </aside>
-    <div class="col-md-8">
-      プロフィールを書く。
+    <div class="col-md-8 user_profile">
+        <p><span>Website :</span> <%= @user.website %></p>
+        <p><span>Introduction :</span> <%= @user.introduction %></p>
     </div>
     <div class="col-md-12">
       <% if @user.microposts.any? %>
