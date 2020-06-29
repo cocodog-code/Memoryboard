@@ -35,6 +35,11 @@ textarea {
   margin-bottom: 10px;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -81,7 +86,7 @@ p {
 
 /* top-page */
 .top-page {
-  padding-top: 150px;
+  padding-top: 110px;
 }
 
 .top-page h1 {
@@ -99,11 +104,12 @@ p {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 90vh;
+  height: 87vh;
   margin-right: -150px;
   padding-right: 150px;
   margin-left: -150px;
   padding-left: 150px;
+  margin-bottom: -38px;
 }
 
 #top-image p {
@@ -301,7 +307,6 @@ input {
   }
   .content {
     display: block;
-    // padding: 10px 10px;
     img {
       display: block;
       padding: 5px 0;
@@ -344,3 +349,4 @@ span.image {
     font-weight: bold;
   }
 }
+
