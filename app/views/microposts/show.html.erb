@@ -1,0 +1,18 @@
+<% provide(:title, @user.user_name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= link_to gravatar_for(@user), @user %>
+　　　　<h1><%= @user.user_name %></h1>
+    </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="col-md-offset-1 col-md-7">
+    <h3>Micropost</h3>
+    <ol class="microposts">
+      <%= render @micropost %>
+    </ol>
+  </div>
+</div>

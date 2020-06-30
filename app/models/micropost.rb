@@ -10,10 +10,10 @@ class Micropost < ApplicationRecord
                               message: "shoud be less than 5MB" }
   # 表示用のリサイズ済み画像を返す
   def square_image
-    image.variant(resize_to_fill: [300, 300])
+    image.variant(resize_to_fill: [400, 400])
   end
   
   def display_image
-    image.variant(resize_to_limit: [400, 400])
+    image.variant(resize_to_limit: [500, 500])
   end
 end

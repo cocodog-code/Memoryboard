@@ -11,6 +11,6 @@ Rails.application.routes.draw do
     end
   end
   resources :password_edits, only: [:edit, :update]
-  resources :microposts,     only: [:create, :destroy]
+  resources :microposts,     only: [:show, :create, :destroy]
   resources :relationships,  only: [:create, :destroy]
 end
