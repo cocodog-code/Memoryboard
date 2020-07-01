@@ -1,0 +1,2 @@
+$("#micropost-<%= @comment.micropost.id %> .comments_area").html("<%= j(render 'comments/index', { comments: @comment.micropost.comments }) %>")
+$("#postModal-<%= @comment.micropost.id %> .comments_area").html("<%= j(render 'comments/index', { comments: @comment.micropost.comments }) %>")

@@ -1,0 +1,16 @@
+<h4>Comment</h4>
+<% comments.each do |comment| %>
+  <% unless comment.id.nil? %>
+    <div class="micropost_comment" id="comment-<%= comment.id %>">
+      <%= link_to small_gravatar_for(comment.user), comment.user %>
+      <%= link_to "#{comment.user.user_name}", comment.user %>
+      <span class="content"><%= comment.content %></span>
+      <% if comment.user == current_user %>
+        <span class="delete_comment">
+           <%= link_to "delete", micropost_comment_path(comment.micropost_id, comment.id),
+               method: :delete, remote: true %>
+        </span><!--.delete_cmnt-->
+      <% end %>
+    </div><!--.one_come-->
+  <% end %>
+<% end %>

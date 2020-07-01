@@ -10,4 +10,10 @@
      data: { confirm: "Are you sure?" }, title: "Confirmation" %>
    <% end %>
   </span>
+  <div class="comment">
+    <div class="comments_area" id="comments_area">
+      <%= render 'comments/index', comments: micropost.comments, micropost: micropost %>
+    </div>
+    <%= render 'comments/form', comment: @comment, micropost: micropost %>
+  </div>
 </li>

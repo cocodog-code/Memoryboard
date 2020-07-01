@@ -20,7 +20,16 @@
         <h4 class="modal-title"><%= micropost.content %></h4>
       </div>
       <div class="modal-body">
-        <%= image_tag(micropost.image) %>
+        <div class="micropost-modal-image">
+          <%= image_tag(micropost.image) %>
+        </div>
+        <!--コメント表示-->
+        <div class="comment">
+          <div class="comments_area" id="comments_area">
+            <%= render 'comments/index', comments: micropost.comments, micropost: micropost %>
+          </div>
+          <%= render 'comments/form', comment: @comment, micropost: micropost %>
+        </div>
       </div>
     </div>
   </div>

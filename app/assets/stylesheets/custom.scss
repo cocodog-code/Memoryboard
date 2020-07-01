@@ -356,7 +356,25 @@ span.image {
 
 /* modal */
 
-.modal-body {
+.micropost-modal-image {
   text-align: center;
 }
+
+/* comment */
+
+.micropost_comment {
+  border-bottom: 1px solid #dddddd;
+  padding: 5px 0 5px 0;
+  .small_gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+.comment_text {
+  margin-top: 10px;
+}
+
 
