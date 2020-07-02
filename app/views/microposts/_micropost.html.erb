@@ -10,6 +10,9 @@
      data: { confirm: "Are you sure?" }, title: "Confirmation" %>
    <% end %>
   </span>
+  <!--いいね機能-->
+  <%= render favorites/favorite %>
+  <!--コメント機能-->
   <div class="comment">
     <div class="comments_area" id="comments_area">
       <%= render 'comments/index', comments: micropost.comments, micropost: micropost %>
