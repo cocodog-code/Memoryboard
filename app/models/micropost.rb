@@ -11,6 +11,16 @@ class Micropost < ApplicationRecord
                      message: "must be a valid image format" },
               size:   { less_than: 5.megabytes,
                               message: "shoud be less than 5MB" }
+  #投稿にいいねする
+  def like(user)
+    favorites.create(user_id: user.id)
+  end
+  
+  #いいねを削除
+  def unlike(user)
+    favorites.find_by(user_id: user.id).destroy
+  end
+  
   #投稿がユーザーにお気に入りに入っているかどうか
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
