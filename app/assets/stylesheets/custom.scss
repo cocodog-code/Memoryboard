@@ -1,6 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome-sprockets";
+// @import "font-awesome-sprockets";
 @import "font-awesome";
 
 /* mixins, variables, etc. */
@@ -377,4 +377,15 @@ span.image {
   margin-top: 10px;
 }
 
+/* favorites */
 
+.favorite-red {
+  color: #FE2E2E;
+  &:hover{
+    color: #FE2E2E;
+  }
+}
+
+.favorite-gray {
+  color: #222222;
+}

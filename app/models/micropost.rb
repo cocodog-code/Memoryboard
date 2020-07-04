@@ -2,7 +2,7 @@ class Micropost < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   has_many :comments, dependent: :destroy
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
@@ -11,6 +11,11 @@ class Micropost < ApplicationRecord
                      message: "must be a valid image format" },
               size:   { less_than: 5.megabytes,
                               message: "shoud be less than 5MB" }
+  #投稿がユーザーにお気に入りに入っているかどうか
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end              
+                
   # 表示用のリサイズ済み画像を返す
   def square_image
     image.variant(resize_to_fill: [400, 400])
@@ -19,4 +24,6 @@ class Micropost < ApplicationRecord
   def display_image
     image.variant(resize_to_limit: [500, 500])
   end
+  
+  
 end

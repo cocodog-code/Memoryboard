@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :fav_posts, through: :favorites, source: :micropost
   has_many :active_relationships,  class_name:  "Relationship",
                                    foreign_key: "follower_id",

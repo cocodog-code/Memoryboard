@@ -11,7 +11,9 @@
    <% end %>
   </span>
   <!--いいね機能-->
-  <%= render favorites/favorite %>
+  <div id="favorites_buttons_<%= micropost.id %>">
+    <%= render 'favorites/favorite', micropost: micropost %>
+  </div>
   <!--コメント機能-->
   <div class="comment">
     <div class="comments_area" id="comments_area">

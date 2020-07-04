@@ -1,0 +1,16 @@
+<% if !current_user?(micropost.user) %>
+  <% if micropost.favorited_by?(current_user) %>
+    <%= link_to micropost_favorites_path(micropost.id), method: :delete, class: "favorite-red btn btn-default btn-xs", remote: true do %>
+      <%= fa_icon 'heart' %>
+      <%= micropost.favorites.count %>
+    <% end %>
+  <% else %>
+    <%= link_to micropost_favorites_path(micropost.id), method: :post, class: "favorite-gray btn btn-default btn-xs", remote: true do %>
+      <%= fa_icon 'heart-o' %>
+      <%= micropost.favorites.count %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= fa_icon 'heart-o' %>
+  <%= micropost.favorites.count %>
+<% end %>
