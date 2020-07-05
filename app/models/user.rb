@@ -13,15 +13,15 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
-  validates :full_name, presence: true, length: { maximum: 50 }
-  validates :user_name, presence: true, length: { maximum: 50 }, unless: :uid?
+  validates :full_name, presence: true, unless: :uid?, length: { maximum: 50 }
+  validates :user_name, presence: true, unless: :uid?, length: { maximum: 50 }
   VALID_EMAIL_REGAX = /\A[\w+\-.]+@[a-z\d\-.]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255 },
+  validates :email, presence: true, unless: :uid?, length: { maximum: 255 },
                 format: { with: VALID_EMAIL_REGAX },
-                uniqueness: true, unless: :uid?
+                uniqueness: true
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 },
-  allow_nil: true, unless: :uid?
+  validates :password, presence: true, unless: :uid?, length: { minimum: 6 },
+  allow_nil: true
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
