@@ -87,13 +87,10 @@ class User < ApplicationRecord
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
-    image = auth[:info][:image]
-    #必要に応じて情報追加してください
   
     #ユーザはSNSで登録情報を変更するかもしれので、毎回データベースの情報も更新する
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.user_name = name
-      user.photo_path = image
     end
   end
 end
