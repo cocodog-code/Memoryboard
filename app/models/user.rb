@@ -14,13 +14,14 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :full_name, presence: true, length: { maximum: 50 }
-  validates :user_name, presence: true, length: { maximum: 50 }
+  validates :user_name, presence: true, length: { maximum: 50 }, unless: :uid?
   VALID_EMAIL_REGAX = /\A[\w+\-.]+@[a-z\d\-.]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                 format: { with: VALID_EMAIL_REGAX },
-                uniqueness: true
+                uniqueness: true, unless: :uid?
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: true, length: { minimum: 6 },
+  allow_nil: true, unless: :uid?
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -78,5 +79,21 @@ class User < ApplicationRecord
   def unlike(micropost)
     favorite = favorites.find_by(micropost_id: micropost.id)
     favorite.destroy if favorite
+  end
+  
+  #auth hashからユーザ情報を取得
+  #データベースにユーザが存在するならユーザ取得して情報更新する；存在しないなら新しいユーザを作成する
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    name = auth[:info][:name]
+    image = auth[:info][:image]
+    #必要に応じて情報追加してください
+  
+    #ユーザはSNSで登録情報を変更するかもしれので、毎回データベースの情報も更新する
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.username = name
+      user.image_path = image
+    end
   end
 end

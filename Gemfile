@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'rails',      '6.0.3'
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'aws-sdk-s3',              '1.46.0', require: false
 gem 'data-confirm-modal'
 gem 'image_processing',           '1.9.3'
