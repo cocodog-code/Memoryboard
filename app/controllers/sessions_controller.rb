@@ -5,9 +5,10 @@ class SessionsController < ApplicationController
   def create
     auth = request.env['omniauth.auth']
     if auth.present?
-      user = User.find_or_create_from_auth(request.env['omniauth.auth'])
+      user = User.find_or_create_form_auth(request.env['omniauth.auth'])
       session[:user_id] = user.id
-      redirect_back_or user
+      flash[:success] = "Successfully logged in with facebook"
+      redirect_to user
     else
       user = User.find_by(email: params[:session][:email].downcase)
       if user&.authenticate(params[:session][:password])

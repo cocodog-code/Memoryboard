@@ -20,8 +20,8 @@ class User < ApplicationRecord
                 format: { with: VALID_EMAIL_REGAX },
                 uniqueness: true
   has_secure_password
-  validates :password, presence: true, unless: :uid?, length: { minimum: 6 },
-  allow_nil: true
+  validates :password, presence: true, length: { minimum: 6 },
+  allow_nil: true, unless: :uid?
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -81,16 +81,15 @@ class User < ApplicationRecord
     favorite.destroy if favorite
   end
   
-  #auth hashからユーザ情報を取得
-  #データベースにユーザが存在するならユーザ取得して情報更新する；存在しないなら新しいユーザを作成する
-  def self.find_or_create_from_auth(auth)
+  def self.find_or_create_form_auth(auth)
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
-  
-    #ユーザはSNSで登録情報を変更するかもしれので、毎回データベースの情報も更新する
+    image = auth[:info][:image]
+
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.user_name = name
+      user.image_url = image
     end
   end
 end
