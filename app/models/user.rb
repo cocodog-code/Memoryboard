@@ -81,15 +81,16 @@ class User < ApplicationRecord
     favorite.destroy if favorite
   end
   
-  def self.find_or_create_form_auth(auth)
-    provider = auth[:provider]
-    uid = auth[:uid]
-    name = auth[:info][:name]
-    image = auth[:info][:image]
-
-    self.find_or_create_by(provider: provider, uid: uid) do |user|
-      user.user_name = name
-      user.image_url = image
-    end
+  def self.from_omniauth(auth)
+  user = User.where('email = ?', auth.info.email).first
+  if user.blank?
+     user = User.new
   end
+  user.uid   = auth.uid
+  user.username  = auth.info.name
+  user.email = auth.info.email
+  user.oauth_token = auth.credentials.token
+  user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+  user
+end
 end
