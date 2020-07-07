@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
     if auth.present?
       user = User.find_or_create_from_auth(request.env['omniauth.auth'])
-      session[:user_id] = user.id
+      log_in user
       redirect_back_or user
     else
       user = User.find_by(email: params[:session][:email].downcase)
