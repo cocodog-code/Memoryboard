@@ -81,16 +81,15 @@ class User < ApplicationRecord
     favorite.destroy if favorite
   end
   
-  def self.from_omniauth(auth)
-  user = User.where('email = ?', auth.info.email).first
-  if user.blank?
-     user = User.new
-  end
-  user.uid   = auth.uid
-  user.user_name  = auth.info.name
-  user.email = auth.info.email
-  user.oauth_token = auth.credentials.token
-  user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-  user
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    name = auth[:info][:name]
+    image = auth[:info][:image]
+  
+    #ユーザはSNSで登録情報を変更するかもしれので、毎回データベースの情報も更新する
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.username = name
+    end
   end
 end
