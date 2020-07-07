@@ -82,10 +82,7 @@ class User < ApplicationRecord
   end
   
   def self.from_omniauth(auth)
-    user = User.where('email = ?', auth.info.email).first
-    if user.blank?
-       user = User.new
-    end
+    user = User.new
     user.uid   = auth.uid
     user.user_name  = auth.info.name
     user.email = auth.info.email
