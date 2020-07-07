@@ -75,20 +75,6 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
-  
-  def facebook_login
-  @user = User.from_omniauth(request.env["omniauth.auth"])
-    if @user.save
-      log_in @user
-      redirect_to @user
-    end
-  end
-
-  #認証に失敗した際の処理
-  def auth_failure 
-    @user = User.new
-    render 'new'
-  end
     
   private
   

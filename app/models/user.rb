@@ -21,7 +21,7 @@ class User < ApplicationRecord
                 uniqueness: true, unless: :uid?
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 },
-  allow_nil: true, on: :facebook_login
+  allow_nil: true, unless: :uid?
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -81,13 +81,17 @@ class User < ApplicationRecord
     favorite.destroy if favorite
   end
   
-  def self.from_omniauth(auth)
-    user = User.new
-    user.uid   = auth.uid
-    user.user_name  = auth.info.name
-    user.email = auth.info.email
-    user.oauth_token = auth.credentials.token
-    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-    user
+  #auth hashからユーザ情報を取得
+  #データベースにユーザが存在するならユーザ取得して情報更新する；存在しないなら新しいユーザを作成する
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    name = auth[:info][:name]
+    #必要に応じて情報追加してください
+  
+    #ユーザはSNSで登録情報を変更するかもしれので、毎回データベースの情報も更新する
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.user_name = name
+    end
   end
 end
