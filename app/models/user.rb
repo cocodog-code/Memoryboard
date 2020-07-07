@@ -21,7 +21,7 @@ class User < ApplicationRecord
                 uniqueness: true, unless: :uid?
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 },
-  allow_nil: true,　on: :facebook_login
+  allow_nil: true, on: :facebook_login
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
