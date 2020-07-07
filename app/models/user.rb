@@ -14,7 +14,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :full_name, presence: true, unless: :uid?, length: { maximum: 50 }
-  validates :user_name, presence: true, length: { maximum: 50 }
+  validates :user_name, presence: true, length: { maximum: 50 }, unless: :uid?
   VALID_EMAIL_REGAX = /\A[\w+\-.]+@[a-z\d\-.]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                 format: { with: VALID_EMAIL_REGAX },
@@ -85,10 +85,13 @@ class User < ApplicationRecord
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
+    image = auth[:info][:image]
+    #必要に応じて情報追加してください
   
     #ユーザはSNSで登録情報を変更するかもしれので、毎回データベースの情報も更新する
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.user_name = name
+      user.image_path = image
     end
   end
 end
