@@ -82,8 +82,6 @@ class UsersController < ApplicationController
     if result
       log_in @user
       redirect_to @user
-    else
-      redirect_to auth_failure_path
     end
   end
 
