@@ -18,10 +18,10 @@ class User < ApplicationRecord
   VALID_EMAIL_REGAX = /\A[\w+\-.]+@[a-z\d\-.]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                 format: { with: VALID_EMAIL_REGAX },
-                uniqueness: true
+                uniqueness: true, unless: :uid?
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 },
-  allow_nil: true, on: :facebook_login
+  allow_nil: true, unless: :uid?
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -85,7 +85,6 @@ class User < ApplicationRecord
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
-    image = auth[:info][:image]
   
     #ユーザはSNSで登録情報を変更するかもしれので、毎回データベースの情報も更新する
     self.find_or_create_by(provider: provider, uid: uid) do |user|
