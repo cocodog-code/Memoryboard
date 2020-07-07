@@ -78,12 +78,9 @@ class UsersController < ApplicationController
   
   def facebook_login
   @user = User.from_omniauth(request.env["omniauth.auth"])
-    result = @user.save
-    if result
+    if @user.save
       log_in @user
       redirect_to @user
-    else
-      redirect_to auth_failure_path
     end
   end
 
