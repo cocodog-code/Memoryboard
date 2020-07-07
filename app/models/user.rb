@@ -91,7 +91,6 @@ class User < ApplicationRecord
     #ユーザはSNSで登録情報を変更するかもしれので、毎回データベースの情報も更新する
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.user_name = name
-      user.image_path = image
     end
   end
 end
