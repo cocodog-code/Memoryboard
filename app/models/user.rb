@@ -93,6 +93,7 @@ class User < ApplicationRecord
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
+    user_name = "Default name"
     image = auth[:info][:image]
     #必要に応じて情報追加してください
   
