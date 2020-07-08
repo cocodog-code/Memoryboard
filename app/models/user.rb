@@ -81,15 +81,18 @@ class User < ApplicationRecord
     favorite.destroy if favorite
   end
   
-  #auth hashからユーザ情報を取得
+    #auth hashからユーザ情報を取得
   #データベースにユーザが存在するならユーザ取得して情報更新する；存在しないなら新しいユーザを作成する
   def self.find_or_create_from_auth(auth)
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
+    image = auth[:info][:image]
+    #必要に応じて情報追加してください
+  
     #ユーザはSNSで登録情報を変更するかもしれので、毎回データベースの情報も更新する
-    self.create(provider: provider, uid: uid) do |user|
-      user.user_name = name
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.full_name = name
     end
   end
 end
