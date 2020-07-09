@@ -98,9 +98,7 @@ class User < ApplicationRecord
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.full_name = name
       user.email = auth.info.email
-      if user.user_name.empty?
-        user.user_name = "Default name"
-      end
+      user.user_name = "Default name" unless user.user_name.exist?
     end
   end
 end
