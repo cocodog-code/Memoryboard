@@ -93,13 +93,12 @@ class User < ApplicationRecord
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
-    user_name = "Default name"
   
     #ユーザはSNSで登録情報を変更するかもしれので、毎回データベースの情報も更新する
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.full_name = name
+      use.user_name = name
       user.email = auth.info.email
-      user.user_name = user_name unless user.user_name.exist?
     end
   end
 end
