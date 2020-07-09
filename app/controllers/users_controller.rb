@@ -74,6 +74,11 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
+  
+  def auth_failure 
+    @user = User.new
+    render 'new'
+  end
     
   private
   

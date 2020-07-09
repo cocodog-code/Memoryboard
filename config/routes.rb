@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post   '/login',  to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get 'auth/:provider/callback', to: 'sessions#create'
+  get '/auth/failure',           to: 'users#auth_failure'
   resources :users do
     member do
       get :following, :followers
