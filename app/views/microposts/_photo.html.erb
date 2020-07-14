@@ -9,6 +9,9 @@
         data: { confirm: "Are you sure?" }, title: "Confirmation" %>
     <% end %>
   </span>
+  <div id="favorites_buttons_<%= micropost.id %>">
+    <%= render 'favorites/favorite', micropost: micropost %>
+  </div>
 </li>
 
 <!--モーダル-->
