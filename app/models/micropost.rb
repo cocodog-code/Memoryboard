@@ -78,4 +78,13 @@ class Micropost < ApplicationRecord
     end
     notification.save if notification.valid?
   end
+  
+  # 投稿を検索する
+  def self.search(search)
+    if search
+      where(['content LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
 end

@@ -30,6 +30,36 @@
             </li>
           </ul>
         </li>
+        <!投稿が表示されるページは投稿検索---->
+          <% if current_page?(users_path) || current_page?(notifications_path) %>
+            <li>
+              <%= form_tag(users_path,:method => 'get', class: "serach-window") do %>
+                <%= text_field_tag :search, '', placeholder: 'user' %>
+                <%= submit_tag 'Search', :name => nil %>
+              <% end %>
+            </li>
+          <% elsif current_page?(root_path) || current_page?(new_micropost_path) %>
+            <li>
+              <%= form_tag(root_path,:method => 'get', class: "serach-window") do %>
+                <%= text_field_tag :search, '', placeholder: 'comment' %>
+                <%= submit_tag 'Search', :name => nil %>
+              <% end %>
+            </li>
+          <% elsif current_page?(:controller => 'users', :action => 'show', :id => params[:id]) %>
+            <li>
+              <%= form_tag(user_path,:method => 'get', class: "serach-window") do %>
+                <%= text_field_tag :search, '', placeholder: 'comment' %>
+                <%= submit_tag 'Search', :name => nil %>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= form_tag(users_path,:method => 'get', class: "serach-window") do %>
+                <%= text_field_tag :search, '', placeholder: 'user' %>
+                <%= submit_tag 'Search', :name => nil %>
+              <% end %>
+            </li>
+          <% end %>
         <!--↑ログイン状態でしか出ないメニュー-->
         <% else %>
         <!--↓ログアウト状態でしか出ないメニュー-->

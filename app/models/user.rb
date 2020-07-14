@@ -115,4 +115,13 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
+  
+  # ユーザーを検索する
+  def self.search(search)
+    if search
+      where(['user_name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
 end
