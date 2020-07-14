@@ -9,7 +9,6 @@ class CreateNotifications < ActiveRecord::Migration[6.0]
       t.boolean :checked, default: false, null: false
 
       t.timestamps
-      t.timestamps
     end
     
     add_index :notifications, :visitor_id

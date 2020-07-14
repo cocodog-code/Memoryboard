@@ -389,3 +389,22 @@ span.image {
 .favorite-gray {
   color: #222222;
 }
+
+/* Notificatons */
+
+.circle-small {
+  font-size: 0.5em;
+  vertical-align: top;
+}
+
+/* Notifications index */
+
+.notifications {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}

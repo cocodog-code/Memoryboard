@@ -11,6 +11,10 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :comments, dependent: :destroy
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id",
+                                  dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id",
+                                   dependent: :destroy
   attr_accessor :remember_token
   before_save :downcase_email
   validates :full_name, presence: true, unless: :uid?, length: { maximum: 50 }
@@ -98,6 +102,17 @@ class User < ApplicationRecord
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.full_name = name
       user.email = auth.info.email
+    end
+  end
+  
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
     end
   end
 end
