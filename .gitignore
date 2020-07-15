@@ -39,3 +39,15 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+#環境変数
+/.env
+
+# アップロードされたテスト画像を無視する
+/public/uploads/*
+
+# AWS
+/.c9/*
+
+#Heroku
+/heroku/

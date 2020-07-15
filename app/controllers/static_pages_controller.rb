@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  
   def home
     if logged_in?
       @micropost = current_user.microposts.build if logged_in?
@@ -7,4 +8,5 @@ class StaticPagesController < ApplicationController
       @comments = @micropost.comments
     end
   end
+  
 end

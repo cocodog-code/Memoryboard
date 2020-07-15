@@ -6,31 +6,33 @@
         <li><%= link_to "Home",   root_path %></li>
         <% if logged_in? %>
         <!--↓ログイン状態でしか出ないメニュー-->
-        <li>
-          <%= link_to(notifications_path) do %>
-            <% if unchecked_notifications.any? %>
-              <i class="fa fa-bell fa-lg" aria-hidden="true"></i>
-              <i class="fa fa-circle notification-circle circle-small"></i>
-            <% else %>
-              <i class="fa fa-bell" aria-hidden="true"></i>
+          <li>
+            <%= link_to(notifications_path) do %>
+              <% if unchecked_notifications.any? %>
+                <i class="fa fa-bell fa-lg" aria-hidden="true"></i>
+                <i class="fa fa-circle notification-circle circle-small"></i>
+              <% else %>
+                <i class="fa fa-bell" aria-hidden="true"></i>
+              <% end %>
             <% end %>
-          <% end %>
-        </li>
-        <li><%= link_to "Users", users_path %></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Account<b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "My Page", current_user %></li>
-            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-            <li class="divider"></li>
-            <li>
-              <%= link_to "Log out", logout_path, method: :delete %>
-            </li>
-          </ul>
-        </li>
-        <!投稿が表示されるページは投稿検索---->
+          </li>
+          
+          <li><%= link_to "Users", users_path %></li>
+          
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account<b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "My Page", current_user %></li>
+              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Log out", logout_path, method: :delete %>
+              </li>
+            </ul>
+          </li>
+             
           <% if current_page?(users_path) || current_page?(notifications_path) %>
             <li>
               <%= form_tag(users_path,:method => 'get', class: "serach-window") do %>
