@@ -44,7 +44,7 @@ yarn-debug.log*
 /.env
 
 # アップロードされたテスト画像を無視する
-/public/uploads/*
+/storage/*
 
 # AWS
 /.c9/*
