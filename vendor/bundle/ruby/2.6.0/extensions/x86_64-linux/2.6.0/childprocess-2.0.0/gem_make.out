@@ -1,5 +1,0 @@
-current directory: /home/ubuntu/environment/Memoryboard/vendor/bundle/ruby/2.6.0/gems/childprocess-2.0.0/ext
-/home/ubuntu/.rvm/rubies/ruby-2.6.3/bin/ruby mkrf_conf.rb
-
-current directory: /home/ubuntu/environment/Memoryboard/vendor/bundle/ruby/2.6.0/gems/childprocess-2.0.0/ext
-/home/ubuntu/.rvm/rubies/ruby-2.6.3/bin/ruby -rrubygems /home/ubuntu/environment/Memoryboard/vendor/bundle/ruby/2.6.0/gems/rake-12.3.3/exe/rake RUBYARCHDIR\=/home/ubuntu/environment/Memoryboard/vendor/bundle/ruby/2.6.0/extensions/x86_64-linux/2.6.0/childprocess-2.0.0 RUBYLIBDIR\=/home/ubuntu/environment/Memoryboard/vendor/bundle/ruby/2.6.0/extensions/x86_64-linux/2.6.0/childprocess-2.0.0
