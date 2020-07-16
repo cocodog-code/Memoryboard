@@ -8,10 +8,12 @@ class Micropost < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :content, length: { maximum: 140 }
+  
   validates :image, presence: true, content_type: { in: ['image/png', 'image/jpg', 'image/jpeg'],
                      message: "must be a valid image format" },
                         size: { less_than: 5.megabytes,
                                message: "shoud be less than 5MB" }
+                               
   #投稿にいいねする
   def like(user)
     favorites.create(user_id: user.id)
