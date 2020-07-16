@@ -40,14 +40,16 @@
 yarn-debug.log*
 .yarn-integrity
 
-#環境変数
 /.env
-
-# アップロードされたテスト画像を無視する
-/storage/*
-
-# AWS
 /.c9/*
-
-#Heroku
 /heroku/
+/vendor/
+/tmp/
+/public/
+/log/
+/lib/
+/bin/
+/config/environments
+/config/initializes
+/config/locales
+/config/webpack
