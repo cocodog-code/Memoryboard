@@ -1,0 +1,46 @@
+<% provide(:title, "Edit user") %>
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :full_name, "Full name *" %>
+      <%= f.text_field :full_name, class: 'form-control' %>
+
+      <%= f.label :user_name, "User name *" %>
+      <%= f.text_field :user_name, class: 'form-control' %>
+
+      <%= f.label :email, "Email *" %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :website %>
+      <%= f.text_field :website, class: 'form-control' %>
+      
+      <%= f.label :introduction %>
+      <%= f.text_area :introduction, class: 'form-control' %>
+      
+      <%= f.label :phone_number %>
+      <%= f.telephone_field :phone_number, class: 'form-control' %>
+      
+      <%= f.label :gender %>
+      <%= f.select :gender, [ ['Male', 1], ['Female', 2], ['Other', 3] ], { include_blank: true }, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+      <p>* required fields</p>
+    <% end %>
+
+    <div class="gravatar_edit">
+      <%= gravatar_for @user %>
+      <a href="https://gravatar.com/emails" target="_blank" rel="noopener">Change icon</a><br>
+      <%= link_to "Change password", edit_password_edit_path %>
+      <div class="delete_account">
+        <%= link_to "Delete account", @user, method: :delete, data:
+        { confirm: 'Are you sure to delete your account?',
+          verify: 'delete', verify_text: 'Type "delete" to confirm.' },
+          title: "Confirmation" %>
+      </div>
+    </div>
+  </div>
+</div>

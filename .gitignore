@@ -39,3 +39,17 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+/.env
+/.c9/*
+/heroku/
+/vendor/
+/tmp/
+/public/
+/log/
+/lib/
+/bin/
+/config/environments
+/config/initializes
+/config/locales
+/config/webpack

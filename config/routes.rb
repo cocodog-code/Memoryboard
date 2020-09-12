@@ -1,3 +1,25 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'password_edits/edit'
+  root 'static_pages#home'
+  get    '/signup', to: 'users#new'
+  get    '/login',  to: 'sessions#new'
+  post   '/login',  to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get '/auth/failure',           to: 'users#auth_failure'
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :password_edits, only: [:edit, :update]
+  resources :microposts,     only: [:show, :create, :destroy]
+  resources :microposts do
+    resources :comments, only: [:create, :destroy]
+  end
+  resources :microposts do
+    resource :favorites, only: [:create, :destroy]
+  end
+  resources :relationships, only: [:create, :destroy]
+  resources :notifications, only: [:index, :destroy]
 end

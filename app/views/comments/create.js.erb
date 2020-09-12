@@ -1,0 +1,3 @@
+$("#micropost-<%= @micropost.id %> .comments_area").html("<%= j(render 'comments/index', { comments: @comment.micropost.comments }) %>")
+$("#postModal-<%= @micropost.id %> .comments_area").html("<%= j(render 'comments/index', { comments: @comment.micropost.comments }) %>")
+$("textarea").val('')

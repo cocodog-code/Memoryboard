@@ -1,0 +1,39 @@
+<li id="micropost-<%= micropost.id %>">
+  <button type="btn" class="btn" data-toggle="modal" data-target="#postModal-<%= micropost.id %>">
+    <%= image_tag(micropost.square_image, :width => '100%', :height => '100%') %>
+  </button>
+  <span class="timestamp text-align-center">
+    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+    <% if current_user?(micropost.user) %>
+      <%= link_to "Delete", micropost, method: :delete,
+      data: { confirm: "Are you sure?" }, title: "Confirmation" %>
+    <% end %>
+  </span>
+  <div id="favorites_buttons_<%= micropost.id %>">
+    <%= render 'favorites/favorite', micropost: micropost %>
+  </div>
+</li>
+
+<!--モーダル-->
+<div id="postModal-<%= micropost.id %>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="btn" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><%= micropost.content %></h4>
+      </div>
+      <div class="modal-body">
+        <div class="micropost-modal-image">
+          <%= image_tag(micropost.image) %>
+        </div>
+        <!--コメント表示-->
+        <div class="comment">
+          <div class="comments_area" id="comments_area">
+            <%= render 'comments/index', comments: micropost.comments, micropost: micropost %>
+          </div>
+          <%= render 'comments/form', comment: @comment, micropost: micropost %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

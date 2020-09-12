@@ -1,0 +1,8 @@
+<%= form_with(model: [micropost, comment], remote: true) do |f| %>
+  <div class="area_cmnt">
+    <div class="field">
+      <%= f.text_area :content, placeholder: "Compose new comment...", class: "comment_text", id: "text_area" %>
+    </div>
+    <%= f.submit "Post", class: "btn btn-primary" %>
+  </div>
+<% end %>

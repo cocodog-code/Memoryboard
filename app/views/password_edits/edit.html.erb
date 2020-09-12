@@ -1,0 +1,21 @@
+<% provide(:title, 'Change password') %>
+<h1>Change password</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @user, url: password_edit_path, local: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password, class: 'form-control' %>
+
+      <%= f.label :password, "New password" %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "New Password (confirmation)" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.submit "Change password", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
